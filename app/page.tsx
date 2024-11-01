@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import axios from 'axios'
+import Image from 'next/image'
 
 // Dynamically import Confetti to avoid SSR issues
 const Confetti = dynamic(() => import('react-confetti'), { ssr: false })
@@ -100,7 +101,7 @@ const Home = () => {
                   className="relative"
                 >
                   <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white">
-                    <img
+                    <Image
                       src={avatar}
                       alt={`Selected user ${index + 1}`}
                       className="w-full h-full object-cover"

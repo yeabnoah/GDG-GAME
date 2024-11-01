@@ -1,13 +1,16 @@
 "use client"
+import React from 'react'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useState } from 'react'
 
-type Props = {}
+interface RegisterPageProps {
+    // Add specific props if needed, or remove interface if not used
+}
 
-const RegisterPage = (props: Props) => {
+const RegisterPage = () => {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -32,7 +35,7 @@ const RegisterPage = (props: Props) => {
         return response
     }
 
-    const { mutate, isPending, isSuccess, isError } = useMutation({
+    const { mutate, isSuccess, isError } = useMutation({
         mutationFn: registerUser,
         onSuccess: (data) => {
             console.log('User registered:', data);
@@ -41,7 +44,6 @@ const RegisterPage = (props: Props) => {
             console.error('Error registering user:', error);
         }
     })
-
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -103,6 +105,8 @@ const RegisterPage = (props: Props) => {
                     <Link href="/dashboard" className=' text-blue-500 mt-5'>Go to Dashboard</Link>
 
                 </div>
+                {isSuccess && <p>Registration successful!</p>}
+                {isError && <p>Registration failed. Please try again.</p>}
             </div>
         </div>
     )
