@@ -8,8 +8,8 @@ const userSchema = new Schema<IUser>(
         email: { type: String, required: true, unique: true },
         password: { type: String },
         role: { type: String, enum: ['admin', 'user'], default: 'user' },
-        provider: { type: String }, // To store the authentication provider (e.g., 'credentials', 'github', 'google')
-        providerId: { type: String }, // To store the user's ID from the authentication provider
+        provider: { type: String },
+        providerId: { type: String },
     },
     {
         timestamps: true,
